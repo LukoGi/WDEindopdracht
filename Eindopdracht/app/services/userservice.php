@@ -15,4 +15,8 @@ class UserService {
     public function createUser($username, $hashed_password) {
         $this->userRepository->createUser($username, $hashed_password);
     }
+
+    public function getUserByUsername($username) {
+        return $this->userRepository->getUserByUsername($username);
+    }
 }

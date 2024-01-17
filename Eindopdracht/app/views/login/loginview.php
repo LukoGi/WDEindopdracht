@@ -54,14 +54,14 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <h2 class="text-center">Login</h2>
-            <form>
+            <form method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Enter username">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Submit</button>
             </form>

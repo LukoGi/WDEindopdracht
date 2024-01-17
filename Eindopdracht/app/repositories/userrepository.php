@@ -21,4 +21,12 @@ class UserRepository {
         $stmt->bindParam(':password', $hashed_password);
         $stmt->execute();
     }
+
+    public function getUserByUsername($username) {
+        $stmt = $this->connection->prepare("SELECT * FROM users WHERE username = :username");
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, "User");
+        return $stmt->fetch();
+    }
 }

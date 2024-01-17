@@ -1,3 +1,9 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,9 +105,13 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                            <li><a class="dropdown-item" href="/register">Register</a></li>
-                            <li><a class="dropdown-item" href="/login">Login</a></li>
-                            <li><a class="dropdown-item" href="#">Order history</a></li>
+                            <?php if (isset($_SESSION['user_id'])): ?>
+                                <li><a class="dropdown-item" href="#">Order history</a></li>
+                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            <?php else: ?>
+                                <li><a class="dropdown-item" href="/register">Register</a></li>
+                                <li><a class="dropdown-item" href="/login">Login</a></li>
+                            <?php endif; ?>
                         </ul>
                     </li>
                 </ul>
