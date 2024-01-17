@@ -24,8 +24,8 @@
         .product-card img {
             margin: auto;
             display: block;
-            max-width: 115px;
-            max-height: 100px;
+            max-width: 200px;
+            max-height: 200px;
             margin-bottom: 10px;
         }
 
@@ -59,6 +59,22 @@
 
         .fa-brands:hover {
             color: #929292;
+        }
+
+        /* More space inbetween category and description */
+        small {
+            display: block;
+            margin: 0;
+        }
+
+        .category {
+            margin-bottom: 20px; 
+        }
+
+        /* Making product title bigger and bolder */
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: bold; 
         }
     </style>
 </head>
@@ -120,18 +136,18 @@
             <h2 class="mt-3 mt-lg-5">Miscellaneous</h2>
             <div class="row">
                 <?php
-                require_once("fakeproducts.php");
                 foreach ($products as $product) {
                 ?>
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xxl-2 p-2">
                         <div class="card product-card h-100 ">
                             <div class="card-body">
                                 <img src="<?= $product->image ?>" alt="<?= $product->title ?>" title="?=$product->title?">
-                                <p><?= $product->title ?></p>
-                                <p><small><?= $product->category ?></small></p>
+                                <p class="product-title"><?= $product->title ?></p>
+                                <small class="category"><?= $product->category ?></small>
+                                <p><?= $product->description ?></p>
                             </div>
                             <div class="card-footer">
-                                <span class="float-start"><h3 class="m-1"><?= number_format($product->price, 2, '.') ?></h3></span>                                
+                                <span class="float-start"><h3 class="m-1">€<?= number_format($product->price, 2, '.') ?></h3></span>                                
                                 <button class="btn btn-secondary rounded-circle float-end">+</button>
                               </div>
                         </div>
