@@ -1,10 +1,11 @@
 <?php
-$url = $_SERVER['REQUEST_URI'];
+$url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 require_once __DIR__ . '/../controllers/homecontroller.php';
 require_once __DIR__ . '/../controllers/logincontroller.php';
 require_once __DIR__ . '/../controllers/registercontroller.php';
 require_once __DIR__ . '/../controllers/logoutcontroller.php';
+require_once __DIR__ . '/../controllers/admincontroller.php';
 
 switch ($url) {
     case '/':
@@ -22,6 +23,14 @@ switch ($url) {
     case '/logout':
         $logoutController = new LogoutController();
         $logoutController->handleLogout();
+        break;
+    case '/admin':
+        $adminController = new AdminController();
+        $adminController->handleAdmin();
+        break;
+    case '/admin/deleteProduct':
+        $adminController = new AdminController();
+        $adminController->deleteProduct();
         break;
     default:
         http_response_code(404);

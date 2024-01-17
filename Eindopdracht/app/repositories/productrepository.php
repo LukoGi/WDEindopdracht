@@ -14,4 +14,9 @@ class ProductRepository {
         $stmt->setFetchMode(PDO::FETCH_CLASS, "Product");
         return $stmt->fetchAll();
     }
+
+    public function deleteProduct($id) {
+        $stmt = $this->connection->prepare("DELETE FROM products WHERE id = ?");
+        return $stmt->execute([$id]);
+    }
 }

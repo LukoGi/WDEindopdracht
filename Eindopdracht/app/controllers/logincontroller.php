@@ -28,7 +28,11 @@ class LoginController {
     
         if ($user && password_verify($password, $user->password)) {
             $_SESSION['user_id'] = $user->id;
-            header('Location: /');
+            if ($username == 'admin') {
+                header('Location: /admin');
+            } else {
+                header('Location: /');
+            }
         } else {
             require_once __DIR__ . '/../views/login/loginview.php';
         }

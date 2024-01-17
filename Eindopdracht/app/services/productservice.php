@@ -11,4 +11,8 @@ class ProductService {
     public function GetAll() {
         return $this->productRepository->GetAll();
     }
+
+    public function deleteProduct($id) {
+        return $this->productRepository->deleteProduct($id);
+    }
 }
