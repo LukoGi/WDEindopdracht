@@ -8,8 +8,8 @@ class HomeController {
         $this->productService = new ProductService();
     }
 
-    public function index() {
+    public function handleHome() {
         $products = $this->productService->getAll();
-        require_once __DIR__ . '/../views/home/index.php';
+        require_once __DIR__ . '/../views/home/homeview.php';
     }
 }

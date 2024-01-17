@@ -4,16 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoyalSupps</title>
+    <title>RoyalSupps Home Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* using a different font, because why not? */
-        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap');
-
-        body {
-            font-family: 'Quicksand', sans-serif;
-        }
 
         /* Product cards */
 
@@ -103,11 +97,11 @@
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="/register">Register</a></li>
+                            <li><a class="dropdown-item" href="/login">Login</a></li>
+                            <li><a class="dropdown-item" href="#">Order history</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -176,7 +170,7 @@
         <div class="bg-dark text-light">
             <div class="container pt-3 pb-2">
                 <p class="float-end"><a class="text-light" href="#">Back to top</a></p>
-                <p>© 2017–2021 Best store ever · <a href="#" class="text-light">Privacy</a> · <a class="text-light" href="#">Terms</a></p>
+                <p>© 2023-2024 RoyalSupps · <a href="#" class="text-light">Privacy</a> · <a class="text-light" href="#">Terms</a></p>
             </div>
         </div>
     </footer>
