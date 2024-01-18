@@ -7,5 +7,4 @@ class Product {
     public string $description;
     public string $category;
     public string $image;
-    public Rating $rating;
 }

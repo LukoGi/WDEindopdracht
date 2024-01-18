@@ -23,4 +23,27 @@ class AdminController {
             echo json_encode(['success' => false, 'error' => 'Could not delete product']);
         }
     }
+
+    public function addProduct() {
+        $title = $_POST['title'];
+        $description = $_POST['description'];
+        $price = $_POST['price'];
+        $category = $_POST['category'];
+        $image = $_POST['image'];
+    
+        $product = new Product();
+        $product->title = $title;
+        $product->description = $description;
+        $product->price = $price;
+        $product->category = $category;
+        $product->image = $image;
+    
+        $result = $this->productService->addProduct($product);
+    
+        if ($result) {
+            header('Location: /admin');
+        } else {
+            echo json_encode(['success' => false, 'error' => 'Could not add product']);
+        }
+    }
 }

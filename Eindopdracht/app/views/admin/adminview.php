@@ -128,6 +128,10 @@ if (session_status() == PHP_SESSION_NONE) {
         <div class="container">
             <h2 class="mt-3 mt-lg-5">Miscellaneous</h2>
             <button class="btn btn-primary">+</button> 
+
+            <div id="add-product-form" style="display: none;">
+            </div>
+
             <div class="row">
                 <?php
                 foreach ($products as $product) {
@@ -202,6 +206,31 @@ if (session_status() == PHP_SESSION_NONE) {
             console.error('Error:', error);
         });
     });
+});
+
+document.querySelector('.btn.btn-primary').addEventListener('click', function() {
+    document.getElementById('add-product-form').style.display = 'block';
+});
+
+document.querySelector('.btn.btn-primary').addEventListener('click', function() {
+    const formHtml = `
+        <form action="/admin/addProduct" method="POST">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title"><br>
+            <label for="description">Description:</label><br>
+            <input type="text" id="description" name="description"><br>
+            <label for="price">Price:</label><br>
+            <input type="number" id="price" name="price" step="0.01"><br>
+            <label for="category">Category:</label><br>
+            <input type="text" id="category" name="category"><br>
+            <label for="image">Image URL:</label><br>
+            <input type="text" id="image" name="image"><br>
+            <input type="submit" value="Submit">
+        </form>
+    `;
+
+    document.getElementById('add-product-form').innerHTML = formHtml;
+    document.getElementById('add-product-form').style.display = 'block';
 });
 </script>
 </body>

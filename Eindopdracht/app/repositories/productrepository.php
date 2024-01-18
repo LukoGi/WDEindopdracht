@@ -19,4 +19,19 @@ class ProductRepository {
         $stmt = $this->connection->prepare("DELETE FROM products WHERE id = ?");
         return $stmt->execute([$id]);
     }
+    
+    public function addProduct(Product $product) {
+        $stmt = $this->connection->prepare("
+            INSERT INTO products (title, description, price, category, image) 
+            VALUES (?, ?, ?, ?, ?)
+        ");
+    
+        return $stmt->execute([
+            $product->title, 
+            $product->description, 
+            $product->price, 
+            $product->category, 
+            $product->image
+        ]);
+    }
 }
