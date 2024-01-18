@@ -76,6 +76,11 @@ if (session_status() == PHP_SESSION_NONE) {
             font-size: 1.2rem;
             font-weight: bold; 
         }
+
+        /* Space above submit button in form */
+        .submit-button {
+            margin-top: 10px; 
+        }
     </style>
 </head>
 
@@ -94,7 +99,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <div class="collapse navbar-collapse" id="navbarsExample04">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
@@ -105,9 +110,13 @@ if (session_status() == PHP_SESSION_NONE) {
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                            <?php if (isset($_SESSION['user_id'])): ?>
-                                <li><a class="dropdown-item" href="#">Order history</a></li>
-                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            <?php if (isset($_SESSION['user_id']) && isset($_SESSION['username'])): ?>
+                                <?php if ($_SESSION['username'] == 'admin'): ?>
+                                    <li><a class="dropdown-item" href="/admin">Admin Page</a></li>
+                                <?php else: ?>
+                                    <li><a class="dropdown-item" href="#">Order history</a></li>
+                                <?php endif; ?>
+                                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             <?php else: ?>
                                 <li><a class="dropdown-item" href="/register">Register</a></li>
                                 <li><a class="dropdown-item" href="/login">Login</a></li>
@@ -126,8 +135,10 @@ if (session_status() == PHP_SESSION_NONE) {
 
     <section>
         <div class="container">
-            <h2 class="mt-3 mt-lg-5">Miscellaneous</h2>
-            <button class="btn btn-primary">+</button> 
+        <div class="d-flex align-items-center mt-3 mt-lg-5">
+            <button class="btn btn-success me-3">+</button>
+            <h2>Our Products</h2>
+        </div>
 
             <div id="add-product-form" style="display: none;">
             </div>
@@ -180,11 +191,10 @@ if (session_status() == PHP_SESSION_NONE) {
         </div>
     </footer>
 
-    <!-- Javascript needed to make the dropdown and hamburger menu work -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 <script>
+
     document.querySelectorAll('.delete-product').forEach(button => {
     button.addEventListener('click', function() {
         const productId = this.dataset.id;
@@ -208,11 +218,11 @@ if (session_status() == PHP_SESSION_NONE) {
     });
 });
 
-document.querySelector('.btn.btn-primary').addEventListener('click', function() {
+document.querySelector('.btn.btn-success').addEventListener('click', function() {
     document.getElementById('add-product-form').style.display = 'block';
 });
 
-document.querySelector('.btn.btn-primary').addEventListener('click', function() {
+document.querySelector('.btn.btn-success').addEventListener('click', function() {
     const formHtml = `
         <form action="/admin/addProduct" method="POST">
             <label for="title">Title:</label><br>
@@ -225,7 +235,7 @@ document.querySelector('.btn.btn-primary').addEventListener('click', function() 
             <input type="text" id="category" name="category"><br>
             <label for="image">Image URL:</label><br>
             <input type="text" id="image" name="image"><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" class="submit-button">
         </form>
     `;
 
@@ -253,12 +263,14 @@ document.querySelectorAll('.btn.btn-info').forEach(button => {
                     <input type="text" id="category" name="category" value="${product.category}"><br>
                     <label for="image">Image URL:</label><br>
                     <input type="text" id="image" name="image" value="${product.image}"><br>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Submit" class="submit-button">
                 </form>
             `;
 
             document.getElementById('add-product-form').innerHTML = formHtml;
             document.getElementById('add-product-form').style.display = 'block';
+
+            window.scrollTo(0, 0);
         })
         .catch((error) => {
             console.error('Error:', error);

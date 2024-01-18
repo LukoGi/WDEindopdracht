@@ -94,7 +94,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <div class="collapse navbar-collapse" id="navbarsExample04">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
@@ -105,9 +105,13 @@ if (session_status() == PHP_SESSION_NONE) {
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                            <?php if (isset($_SESSION['user_id'])): ?>
-                                <li><a class="dropdown-item" href="#">Order history</a></li>
-                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            <?php if (isset($_SESSION['user_id']) && isset($_SESSION['username'])): ?>
+                                <?php if ($_SESSION['username'] == 'admin'): ?>
+                                    <li><a class="dropdown-item" href="/admin">Admin Page</a></li>
+                                <?php else: ?>
+                                    <li><a class="dropdown-item" href="#">Order history</a></li>
+                                <?php endif; ?>
+                                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             <?php else: ?>
                                 <li><a class="dropdown-item" href="/register">Register</a></li>
                                 <li><a class="dropdown-item" href="/login">Login</a></li>
@@ -137,7 +141,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
     <section>
         <div class="container">
-            <h2 class="mt-3 mt-lg-5">Miscellaneous</h2>
+            <h2 class="mt-3 mt-lg-5">Our Products</h2>
             <div class="row">
                 <?php
                 foreach ($products as $product) {
