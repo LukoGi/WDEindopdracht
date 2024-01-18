@@ -195,6 +195,30 @@ if (session_status() == PHP_SESSION_NONE) {
 
 <script>
 
+document.querySelectorAll('.add-to-cart-button').forEach(button => {
+        button.addEventListener('click', addToCart);
+    });
+
+    function addToCart(event) {
+        const productId = event.target.getAttribute('data-id');
+
+        fetch('/cart/addToCart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `product_id=${productId}`,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Product added to cart!');
+            } else {
+                alert('Failed to add product to cart.');
+            }
+        });
+    }
+
 </script>
 </body>
 

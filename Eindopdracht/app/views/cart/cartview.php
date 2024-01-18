@@ -54,6 +54,32 @@
         </div>
     </nav>
 
+    <div class="container mt-5">
+    <h1>Your Cart</h1>
+    <?php if (!empty($_SESSION['cart'])): ?>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_SESSION['cart'] as $product): ?>
+                    <tr>
+                    <td><?= $product->title ?></td>
+                    <td><?= $product->price ?></td>
+                        <td>1</td> <!-- You might want to replace this with the actual quantity -->
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p>Your cart is empty.</p>
+    <?php endif; ?>
+</div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>

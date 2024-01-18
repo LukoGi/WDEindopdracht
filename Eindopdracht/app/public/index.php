@@ -49,6 +49,10 @@ switch ($url) {
         $cartController = new CartController();
         $cartController->handleCart();
         break;
+    case '/cart/addToCart':
+        $cartController = new CartController();
+        $cartController->addToCart();
+        break;
     default:
         http_response_code(404);
 }
