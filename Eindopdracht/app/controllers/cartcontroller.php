@@ -31,14 +31,25 @@ class CartController {
     
         // Add the product to the cart in the session
         $_SESSION['cart'][] = $product;
-    
-        // Debug: capture the output of var_dump
-        ob_start();
-        var_dump($product_id, $product, $_SESSION['cart']);
-        $debug_output = ob_get_clean();
 
         // Return a JSON response
         header('Content-Type: application/json');
         echo json_encode(['success' => true]);
+    }
+
+    public function removeFromCart() {
+        // Start the session if it hasn't been started yet
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        // Get the product key from the request body
+        $product_key = $_POST['product_key'];
+    
+        // Remove the product from the cart in the session
+        unset($_SESSION['cart'][$product_key]);
+    
+        // Redirect back to the cart page
+        header('Location: /cart');
     }
 }

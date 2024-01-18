@@ -66,13 +66,19 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($_SESSION['cart'] as $product): ?>
-                    <tr>
+            <?php foreach ($_SESSION['cart'] as $key => $product): ?>
+                <tr>
                     <td><?= $product->title ?></td>
-                    <td><?= $product->price ?></td>
-                        <td>1</td> <!-- You might want to replace this with the actual quantity -->
-                    </tr>
-                <?php endforeach; ?>
+                    <td>€<?= $product->price ?></td>
+                    <td>1</td>
+                    <td>
+                        <form action="/cart/removeFromCart" method="post">
+                        <input type="hidden" name="product_key" value="<?= $key ?>">
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
             </tbody>
         </table>
     <?php else: ?>

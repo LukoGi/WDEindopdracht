@@ -53,6 +53,10 @@ switch ($url) {
         $cartController = new CartController();
         $cartController->addToCart();
         break;
+    case '/cart/removeFromCart':
+        $cartController = new CartController();
+        $cartController->removeFromCart();
+        break;
     default:
         http_response_code(404);
 }
