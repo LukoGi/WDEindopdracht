@@ -6,6 +6,7 @@ require_once __DIR__ . '/../controllers/logincontroller.php';
 require_once __DIR__ . '/../controllers/registercontroller.php';
 require_once __DIR__ . '/../controllers/logoutcontroller.php';
 require_once __DIR__ . '/../controllers/admincontroller.php';
+require_once __DIR__ . '/../controllers/cartcontroller.php';
 
 switch ($url) {
     case '/':
@@ -43,6 +44,10 @@ switch ($url) {
     case '/admin/getProduct':
         $adminController = new AdminController();
         $adminController->getProduct();
+        break;
+    case '/cart':
+        $cartController = new CartController();
+        $cartController->handleCart();
         break;
     default:
         http_response_code(404);

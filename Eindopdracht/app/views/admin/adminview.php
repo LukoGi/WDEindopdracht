@@ -124,9 +124,9 @@ if (session_status() == PHP_SESSION_NONE) {
                         </ul>
                     </li>
                 </ul>
-                <form>
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                </form>
+                <a href="/cart" class="btn btn-outline-success">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                </a>
             </div>
         </div>
     </nav>

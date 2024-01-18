@@ -119,9 +119,9 @@ if (session_status() == PHP_SESSION_NONE) {
                         </ul>
                     </li>
                 </ul>
-                <form>
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                </form>
+                <a href="/cart" class="btn btn-outline-success">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                </a>
             </div>
         </div>
     </nav>
@@ -156,7 +156,7 @@ if (session_status() == PHP_SESSION_NONE) {
                             </div>
                             <div class="card-footer">
                                 <span class="float-start"><h3 class="m-1">€<?= number_format($product->price, 2, '.') ?></h3></span>                                
-                                <button class="btn btn-secondary rounded-circle float-end">+</button>
+                                <button class="btn btn-secondary rounded-circle float-end add-to-cart-button" data-id="<?= $product->id ?>">+</button>
                               </div>
                         </div>
                     </div>
@@ -192,6 +192,10 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Javascript needed to make the dropdown and hamburger menu work -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script>
+
+</script>
 </body>
 
 </html>
