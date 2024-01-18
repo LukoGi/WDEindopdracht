@@ -4,12 +4,15 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 require_once __DIR__ . '/../services/ProductService.php';
+require_once __DIR__ . '/../services/OrderService.php';
 
 class CartController {
     private $productService;
+    private $orderService;
 
     public function __construct() {
         $this->productService = new ProductService();
+        $this->orderService = new OrderService();
     }
 
     public function handleCart() {
@@ -51,5 +54,26 @@ class CartController {
     
         // Redirect back to the cart page
         header('Location: /cart');
+    }
+
+    public function createOrder() {
+        // Start the session if it hasn't been started yet
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        // Create a new order for the current user
+        $orderId = $this->orderService->createOrder($_SESSION['user_id']);
+    
+        // Add each product in the cart to the order
+        foreach ($_SESSION['cart'] as $product) {
+            $this->orderService->addProductToOrder($orderId, $product->id); // assuming quantity is always 1
+        }
+    
+        // Clear the cart
+        $_SESSION['cart'] = [];
+    
+        // Redirect the user to a success page
+        header('Location: /ordersuccess');
     }
 }

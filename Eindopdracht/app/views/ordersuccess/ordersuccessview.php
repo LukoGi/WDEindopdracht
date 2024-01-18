@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoyalSupps Cart Page</title>
+    <title>RoyalSupps Order Success Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<style>
-
-</style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            margin-bottom: 40px;
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+    <!-- Example of copy pasting and modifying a navbar from the bootstrap examples -->
+    <!-- Copy pasted from https://getbootstrap.com/docs/5.0/examples/navbars/ -->
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
         <div class="container">
             <a class="navbar-brand" href="#">RoyalSupps</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,47 +59,17 @@
         </div>
     </nav>
 
-    <div class="container mt-5">
-    <h1>Your Cart</h1>
-    <?php if (!empty($_SESSION['cart'])): ?>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($_SESSION['cart'] as $key => $product): ?>
-                <tr>
-                    <td><?= $product->title ?></td>
-                    <td>€<?= $product->price ?></td>
-                    <td>1</td>
-                    <td>
-                        <form action="/cart/removeFromCart" method="post">
-                        <input type="hidden" name="product_key" value="<?= $key ?>">
-                        <button type="submit" class="btn btn-danger">Remove</button>
-                        </form>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php else: ?>
-        <p>Your cart is empty.</p>
-    <?php endif; ?>
-</div>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Thank You for Your Order!</h1>
+            <p class="lead">Your order has been placed successfully and will be delivered to you soon.</p>
+            <hr class="my-4">
+            <p>For any queries or support, please contact us at support@royalsupps.com.</p>
+            <a class="btn btn-primary btn-lg" href="/" role="button">Continue Shopping</a>
+        </div>
+    </div>    
 
-<?php if (!empty($_SESSION['cart'])): ?>
-    <div class="text-center">
-        <form action="/cart/createOrder" method="post">
-            <button type="submit" class="btn btn-primary">Place Order</button>
-        </form>
-    </div>
-<?php endif; ?>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
 </html>

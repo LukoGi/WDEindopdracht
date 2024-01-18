@@ -57,6 +57,13 @@ switch ($url) {
         $cartController = new CartController();
         $cartController->removeFromCart();
         break;
+    case '/cart/createOrder':
+        $cartController = new CartController();
+        $cartController->createOrder();
+        break;
+    case '/ordersuccess':
+        require_once __DIR__ . '/../views/ordersuccess/ordersuccessview.php';
+        break;
     default:
         http_response_code(404);
 }
