@@ -19,4 +19,12 @@ class ProductService {
     public function addProduct(Product $product) {
         return $this->productRepository->addProduct($product);
     }
+
+    public function getProduct($id) {
+        return $this->productRepository->getProduct($id);
+    }
+
+    public function editProduct(Product $product) {
+        return $this->productRepository->editProduct($product);
+    }
 }

@@ -36,6 +36,14 @@ switch ($url) {
         $adminController = new AdminController();
         $adminController->addProduct();
         break;
+    case '/admin/editProduct':
+        $adminController = new AdminController();
+        $adminController->editProduct();
+        break;
+    case '/admin/getProduct':
+        $adminController = new AdminController();
+        $adminController->getProduct();
+        break;
     default:
         http_response_code(404);
 }

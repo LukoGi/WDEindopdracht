@@ -147,7 +147,7 @@ if (session_status() == PHP_SESSION_NONE) {
                             <div class="card-footer">
                                 <span class="float-start"><h3 class="m-1">€<?= number_format($product->price, 2, '.') ?></h3></span>                                
                                 <button class="btn btn-danger rounded-circle float-end mx-2 delete-product" data-id="<?= $product->id ?>">-</button> 
-                                <button class="btn btn-info rounded-circle float-end">E</button> 
+                                <button class="btn btn-info rounded-circle float-end" data-id="<?= $product->id ?>">E</button>  
                               </div>
                         </div>
                     </div>
@@ -231,6 +231,39 @@ document.querySelector('.btn.btn-primary').addEventListener('click', function() 
 
     document.getElementById('add-product-form').innerHTML = formHtml;
     document.getElementById('add-product-form').style.display = 'block';
+});
+
+document.querySelectorAll('.btn.btn-info').forEach(button => {
+    button.addEventListener('click', function() {
+        const productId = this.dataset.id;
+
+        fetch(`/admin/getProduct?id=${productId}`)
+        .then(response => response.json())
+        .then(product => {
+            const formHtml = `
+                <form action="/admin/editProduct" method="POST">
+                    <input type="hidden" id="id" name="id" value="${product.id}">
+                    <label for="title">Title:</label><br>
+                    <input type="text" id="title" name="title" value="${product.title}"><br>
+                    <label for="description">Description:</label><br>
+                    <input type="text" id="description" name="description" value="${product.description}"><br>
+                    <label for="price">Price:</label><br>
+                    <input type="number" id="price" name="price" step="0.01" value="${product.price}"><br>
+                    <label for="category">Category:</label><br>
+                    <input type="text" id="category" name="category" value="${product.category}"><br>
+                    <label for="image">Image URL:</label><br>
+                    <input type="text" id="image" name="image" value="${product.image}"><br>
+                    <input type="submit" value="Submit">
+                </form>
+            `;
+
+            document.getElementById('add-product-form').innerHTML = formHtml;
+            document.getElementById('add-product-form').style.display = 'block';
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
 });
 </script>
 </body>
