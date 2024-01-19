@@ -7,6 +7,7 @@ require_once __DIR__ . '/../controllers/registercontroller.php';
 require_once __DIR__ . '/../controllers/logoutcontroller.php';
 require_once __DIR__ . '/../controllers/admincontroller.php';
 require_once __DIR__ . '/../controllers/cartcontroller.php';
+require_once __DIR__ . '/../controllers/orderhistorycontroller.php';
 
 switch ($url) {
     case '/':
@@ -63,6 +64,10 @@ switch ($url) {
         break;
     case '/ordersuccess':
         require_once __DIR__ . '/../views/ordersuccess/ordersuccessview.php';
+        break;
+    case '/orderhistory':
+        $orderHistoryController = new OrderHistoryController();
+        $orderHistoryController->handleOrderHistory();
         break;
     default:
         http_response_code(404);

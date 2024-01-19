@@ -23,14 +23,15 @@ class OrderRepository {
         $stmt = $this->connection->prepare("SELECT * FROM orders WHERE user_id = ?");
         $stmt->execute([$userId]);
         $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    
         $orderObjects = [];
         foreach ($orders as $order) {
-            $orderObject = new Order($order['id'], $order['user_id'], $order['created_at'], $order['updated_at']);
+            // Replace 'userId' and 'createdAt' with the correct column names from your database
+            $orderObject = new Order($order['id'], $order['user_id'], $order['created_at']);
             $orderObject->items = $this->getOrderItems($orderObject->id);
             $orderObjects[] = $orderObject;
         }
-
+    
         return $orderObjects;
     }
 
