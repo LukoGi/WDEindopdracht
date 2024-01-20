@@ -15,7 +15,9 @@ class OrderHistoryController {
         $this->productService = new ProductService();
     }
 
-    public function handleOrderHistory() {    
+    public function handleOrderHistory() {  
+        $userId = filter_var($_SESSION['user_id'], FILTER_SANITIZE_NUMBER_INT);
+        
         // Fetch the user's orders from the database
         $orders = $this->orderService->getOrdersByUser($_SESSION['user_id']);
 

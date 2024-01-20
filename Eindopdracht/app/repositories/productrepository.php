@@ -16,11 +16,17 @@ class ProductRepository {
     }
 
     public function deleteProduct($id) {
+        $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
         $stmt = $this->connection->prepare("DELETE FROM products WHERE id = ?");
         return $stmt->execute([$id]);
     }
 
     public function addProduct(Product $product) {
+        $product->title = filter_var($product->title, FILTER_SANITIZE_STRING);
+        $product->description = filter_var($product->description, FILTER_SANITIZE_STRING);
+        $product->price = filter_var($product->price, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $product->category = filter_var($product->category, FILTER_SANITIZE_STRING);
+        $product->image = filter_var($product->image, FILTER_SANITIZE_URL);
         $stmt = $this->connection->prepare("
             INSERT INTO products (title, description, price, category, image) 
             VALUES (?, ?, ?, ?, ?)
@@ -36,6 +42,7 @@ class ProductRepository {
     }
 
     public function getProduct($id) {
+        $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
         $stmt = $this->connection->prepare("SELECT * FROM products WHERE id = ?");
         $stmt->execute([$id]);
         $stmt->setFetchMode(PDO::FETCH_CLASS, "Product");
@@ -43,6 +50,13 @@ class ProductRepository {
     }
 
     public function editProduct(Product $product) {
+        $product->title = filter_var($product->title, FILTER_SANITIZE_STRING);
+        $product->description = filter_var($product->description, FILTER_SANITIZE_STRING);
+        $product->price = filter_var($product->price, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $product->category = filter_var($product->category, FILTER_SANITIZE_STRING);
+        $product->image = filter_var($product->image, FILTER_SANITIZE_URL);
+        $product->id = filter_var($product->id, FILTER_SANITIZE_NUMBER_INT);
+
         $stmt = $this->connection->prepare("
             UPDATE products 
             SET title = ?, description = ?, price = ?, category = ?, image = ? 

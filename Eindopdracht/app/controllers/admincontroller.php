@@ -14,7 +14,7 @@ class AdminController {
     }
 
     public function deleteProduct() {
-        $id = $_GET['id'];
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
         $result = $this->productService->deleteProduct($id);
     
         if ($result) {
@@ -25,11 +25,11 @@ class AdminController {
     }
 
     public function addProduct() {
-        $title = $_POST['title'];
-        $description = $_POST['description'];
-        $price = $_POST['price'];
-        $category = $_POST['category'];
-        $image = $_POST['image'];
+        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+        $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+        $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
+        $image = filter_input(INPUT_POST, 'image', FILTER_SANITIZE_URL);
     
         $product = new Product();
         $product->title = $title;
@@ -48,7 +48,7 @@ class AdminController {
     }
 
     public function getProduct() {
-        $id = $_GET['id'];
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
         $product = $this->productService->getProduct($id);
     
         if ($product) {
@@ -59,12 +59,12 @@ class AdminController {
     }
 
     public function editProduct() {
-        $id = $_POST['id'];
-        $title = $_POST['title'];
-        $description = $_POST['description'];
-        $price = $_POST['price'];
-        $category = $_POST['category'];
-        $image = $_POST['image'];
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+        $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+        $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
+        $image = filter_input(INPUT_POST, 'image', FILTER_SANITIZE_URL);
     
         $product = new Product();
         $product->id = $id;

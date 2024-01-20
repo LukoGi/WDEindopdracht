@@ -25,16 +25,15 @@ class CartController {
             session_start();
         }
     
-        // Get the product ID from the request body
-        $product_id = $_POST['product_id'];
+        // Get the product ID from the request body and sanitize it
+        $product_id = filter_input(INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT);
     
         // Fetch the product data from the database
-        // This assumes you have a ProductService with a getProduct method
         $product = $this->productService->getProduct($product_id);
     
         // Add the product to the cart in the session
         $_SESSION['cart'][] = $product;
-
+    
         // Return a JSON response
         header('Content-Type: application/json');
         echo json_encode(['success' => true]);
@@ -46,8 +45,8 @@ class CartController {
             session_start();
         }
     
-        // Get the product key from the request body
-        $product_key = $_POST['product_key'];
+        // Get the product key from the request body and sanitize it
+        $product_key = filter_input(INPUT_POST, 'product_key', FILTER_SANITIZE_NUMBER_INT);
     
         // Remove the product from the cart in the session
         unset($_SESSION['cart'][$product_key]);
@@ -62,8 +61,8 @@ class CartController {
             session_start();
         }
     
-        // Check if a user is logged in
-        $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+        // Check if a user is logged in and sanitize the user_id
+        $userId = isset($_SESSION['user_id']) ? filter_var($_SESSION['user_id'], FILTER_SANITIZE_NUMBER_INT) : null;
     
         // Create a new order for the current user (or a guest if no user is logged in)
         $orderId = $this->orderService->createOrder($userId);

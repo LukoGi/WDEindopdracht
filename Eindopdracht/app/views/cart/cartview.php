@@ -14,7 +14,7 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
         <div class="container">
-            <a class="navbar-brand" href="#">RoyalSupps</a>
+            <a class="navbar-brand" href="#" style="color: lightblue;">RoyalSupps</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,7 +25,7 @@
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                        <a class="nav-link dropdown-toggle active" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown04">
                             <?php if (isset($_SESSION['user_id']) && isset($_SESSION['username'])): ?>
                                 <?php if ($_SESSION['username'] == 'admin'): ?>
@@ -86,7 +86,7 @@
 <?php if (!empty($_SESSION['cart'])): ?>
     <div class="text-center">
         <form action="/cart/createOrder" method="post">
-            <button type="submit" class="btn btn-primary">Place Order</button>
+            <button type="submit" class="btn btn-primary" style="width: 200px;">Place Order</button>
         </form>
     </div>
 <?php endif; ?>
