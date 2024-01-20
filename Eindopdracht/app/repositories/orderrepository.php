@@ -8,22 +8,26 @@ class OrderRepository {
         $this->connection = new PDO("mysql:host=mysql;dbname=royalsuppsdb", "root", "secret123");
     }
 
-    public function createOrder($userId) {
-        $userId = filter_var($userId, FILTER_SANITIZE_NUMBER_INT);
+    public function createOrder($userId = null) {
+        if ($userId === '') {
+            throw new InvalidArgumentException('User ID cannot be an empty string');
+        }
+    
+        $userId = $userId !== null ? htmlspecialchars($userId) : null;
         $stmt = $this->connection->prepare("INSERT INTO orders (user_id) VALUES (?)");
         $stmt->execute([$userId]);
         return $this->connection->lastInsertId();
     }
 
     public function addProductToOrder($orderId, $productId) {
-        $orderId = filter_var($orderId, FILTER_SANITIZE_NUMBER_INT);
-        $productId = filter_var($productId, FILTER_SANITIZE_NUMBER_INT);
+        $orderId = htmlspecialchars($orderId);
+        $productId = htmlspecialchars($productId);
         $stmt = $this->connection->prepare("INSERT INTO order_items (order_id, product_id) VALUES (?, ?)");
         $stmt->execute([$orderId, $productId]);
     }
 
     public function getOrdersByUser($userId) {
-        $userId = filter_var($userId, FILTER_SANITIZE_NUMBER_INT);
+        $userId = htmlspecialchars($userId);
         $stmt = $this->connection->prepare("SELECT * FROM orders WHERE user_id = ?");
         $stmt->execute([$userId]);
         $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -40,7 +44,7 @@ class OrderRepository {
     }
 
     public function getOrderItems($orderId) {
-        $orderId = filter_var($orderId, FILTER_SANITIZE_NUMBER_INT);
+        $orderId = htmlspecialchars($orderId);
         $stmt = $this->connection->prepare("SELECT * FROM order_items WHERE order_id = ?");
         $stmt->execute([$orderId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

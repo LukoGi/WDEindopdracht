@@ -16,7 +16,7 @@ class UserRepository {
     }
 
     public function createUser($username, $hashed_password) {
-        $username = filter_var($username, FILTER_SANITIZE_STRING);
+        $username = htmlspecialchars($username);
         $stmt = $this->connection->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':password', $hashed_password);
@@ -24,7 +24,7 @@ class UserRepository {
     }
 
     public function getUserByUsername($username) {
-        $username = filter_var($username, FILTER_SANITIZE_STRING);
+        $username = htmlspecialchars($username);
         $stmt = $this->connection->prepare("SELECT * FROM users WHERE username = :username");
         $stmt->bindParam(':username', $username);
         $stmt->execute();

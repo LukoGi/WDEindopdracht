@@ -16,7 +16,7 @@ class OrderHistoryController {
     }
 
     public function handleOrderHistory() {  
-        $userId = filter_var($_SESSION['user_id'], FILTER_SANITIZE_NUMBER_INT);
+        $userId = htmlspecialchars($_SESSION['user_id']);
         
         // Fetch the user's orders from the database
         $orders = $this->orderService->getOrdersByUser($_SESSION['user_id']);

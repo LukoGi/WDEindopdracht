@@ -17,8 +17,8 @@ class RegisterController {
     }
 
     private function registerUser() {
-        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+        $username = htmlspecialchars($_POST['username']);
+        $password = htmlspecialchars($_POST['password']);
     
         if (strlen($password) < 8) {
             header('Location: /register');

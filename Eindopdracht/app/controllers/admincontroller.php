@@ -25,10 +25,10 @@ class AdminController {
     }
 
     public function addProduct() {
-        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
-        $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+        $title = htmlspecialchars($_POST['title']);
+        $description = htmlspecialchars($_POST['description']);
         $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-        $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
+        $category = htmlspecialchars($_POST['category']);
         $image = filter_input(INPUT_POST, 'image', FILTER_SANITIZE_URL);
     
         $product = new Product();
@@ -60,10 +60,10 @@ class AdminController {
 
     public function editProduct() {
         $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
-        $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+        $title = htmlspecialchars($_POST['title']);
+        $description = htmlspecialchars($_POST['description']);
         $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-        $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
+        $category = htmlspecialchars($_POST['category']);
         $image = filter_input(INPUT_POST, 'image', FILTER_SANITIZE_URL);
     
         $product = new Product();

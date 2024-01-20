@@ -21,8 +21,8 @@ class LoginController {
     }
 
     private function loginUser() {
-        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+        $username = htmlspecialchars($_POST['username']);
+        $password = htmlspecialchars($_POST['password']);
     
         $user = $this->userService->getUserByUsername($username);
     
