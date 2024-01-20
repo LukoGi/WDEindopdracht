@@ -31,7 +31,7 @@
                                 <?php if ($_SESSION['username'] == 'admin'): ?>
                                     <li><a class="dropdown-item" href="/admin">Admin Page</a></li>
                                 <?php else: ?>
-                                    <li><a class="dropdown-item" href="#">Order history</a></li>
+                                    <li><a class="dropdown-item" href="/orderhistory">Order history</a></li>
                                 <?php endif; ?>
                                     <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             <?php else: ?>
@@ -59,7 +59,11 @@
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($_SESSION['cart'] as $key => $product): ?>
+            <?php 
+            $totalPrice = 0;
+            foreach ($_SESSION['cart'] as $key => $product): 
+                $totalPrice += $product->price;
+            ?>
                 <tr>
                     <td><?= $product->title ?></td>
                     <td>€<?= $product->price ?></td>
@@ -73,6 +77,7 @@
             <?php endforeach; ?>
             </tbody>
         </table>
+        <h4>Total Price: €<?= $totalPrice ?></h4>
     <?php else: ?>
         <p>Your cart is empty.</p>
     <?php endif; ?>

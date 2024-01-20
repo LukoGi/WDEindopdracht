@@ -36,7 +36,7 @@
                                 <?php if ($_SESSION['username'] == 'admin'): ?>
                                     <li><a class="dropdown-item" href="/admin">Admin Page</a></li>
                                 <?php else: ?>
-                                    <li><a class="dropdown-item" href="#">Order history</a></li>
+                                    <li><a class="dropdown-item" href="/orderhistory">Order history</a></li>
                                 <?php endif; ?>
                                     <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             <?php else: ?>
@@ -60,25 +60,30 @@
         <p>You have no orders.</p>
     <?php else: ?>
         <?php foreach ($orders as $order): ?>
-    <div class="card mb-3">
-        <div class="card-header">
-            Order #<?= $order->id ?>
-        </div>
-        <div class="card-body">
-            <p>Order Date: <?= $order->createdAt ?></p>
-            <?php if (!empty($order->items)): ?>
-                <h5>Products:</h5>
-                <ul>
-                    <?php foreach ($order->items as $item): ?>
-                        <li><?= htmlspecialchars($item['title']) ?> - Price: €<?= htmlspecialchars($item['price']) ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php else: ?>
-                <p>No products in this order.</p>
-            <?php endif; ?>
-        </div>
-    </div>
-<?php endforeach; ?>
+            <div class="card mb-3">
+                <div class="card-header">
+                    Order #<?= $order->id ?>
+                </div>
+                <div class="card-body">
+                    <p>Order Date: <?= $order->createdAt ?></p>
+                    <?php if (!empty($order->items)): ?>
+                        <h5>Products:</h5>
+                        <ul>
+                        <?php 
+                        $totalPrice = 0;
+                        foreach ($order->items as $item): 
+                            $totalPrice += $item['price'];
+                        ?>
+                            <li><?= htmlspecialchars($item['title']) ?> - Price: €<?= htmlspecialchars($item['price']) ?></li>
+                        <?php endforeach; ?>
+                        </ul>
+                        <h5>Total Price: €<?= $totalPrice ?></h5>
+                    <?php else: ?>
+                        <p>No products in this order.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
     <?php endif; ?>
 </div>
 

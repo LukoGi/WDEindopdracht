@@ -36,7 +36,7 @@
                                 <?php if ($_SESSION['username'] == 'admin'): ?>
                                     <li><a class="dropdown-item" href="/admin">Admin Page</a></li>
                                 <?php else: ?>
-                                    <li><a class="dropdown-item" href="#">Order history</a></li>
+                                    <li><a class="dropdown-item" href="/orderhistory">Order history</a></li>
                                 <?php endif; ?>
                                     <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             <?php else: ?>
