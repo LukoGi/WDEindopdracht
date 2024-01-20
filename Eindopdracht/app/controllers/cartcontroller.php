@@ -20,62 +20,47 @@ class CartController {
     }
 
     public function addToCart() {
-        // Start the session if it hasn't been started yet
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
     
-        // Get the product ID from the request body and sanitize it
         $product_id = htmlspecialchars($_POST['product_id']);
     
-        // Fetch the product data from the database
         $product = $this->productService->getProduct($product_id);
     
-        // Add the product to the cart in the session
         $_SESSION['cart'][] = $product;
     
-        // Return a JSON response
         header('Content-Type: application/json');
         echo json_encode(['success' => true]);
     }
 
     public function removeFromCart() {
-        // Start the session if it hasn't been started yet
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
     
-        // Get the product key from the request body and sanitize it
         $product_key = htmlspecialchars($_POST['product_key']);
     
-        // Remove the product from the cart in the session
         unset($_SESSION['cart'][$product_key]);
     
-        // Redirect back to the cart page
         header('Location: /cart');
     }
 
     public function createOrder() {
-        // Start the session if it hasn't been started yet
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
     
-        // Check if a user is logged in and sanitize the user_id
         $userId = isset($_SESSION['user_id']) ? htmlspecialchars($_SESSION['user_id']) : null;
     
-        // Create a new order for the current user (or a guest if no user is logged in)
         $orderId = $this->orderService->createOrder($userId);
     
-        // Add each product in the cart to the order
         foreach ($_SESSION['cart'] as $product) {
-            $this->orderService->addProductToOrder($orderId, $product->id); // assuming quantity is always 1
+            $this->orderService->addProductToOrder($orderId, $product->id); 
         }
     
-        // Clear the cart
         $_SESSION['cart'] = [];
     
-        // Redirect the user to a success page
         header('Location: /ordersuccess');
     }
 }

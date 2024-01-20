@@ -14,9 +14,6 @@
     </style>
 </head>
 <body>
-    <!-- Example of copy pasting and modifying a navbar from the bootstrap examples -->
-    <!-- Copy pasted from https://getbootstrap.com/docs/5.0/examples/navbars/ -->
-
     <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
         <div class="container">
             <a class="navbar-brand" href="#" style="color: lightblue;">RoyalSupps</a>

@@ -29,7 +29,7 @@ if (session_status() == PHP_SESSION_NONE) {
             margin-bottom: 10px;
         }
 
-        /* Demonstrating a media query. This can be solved without one by the way */
+        /* Media query */
 
         @media screen and (max-width: 768px) {
 
@@ -43,7 +43,7 @@ if (session_status() == PHP_SESSION_NONE) {
             }
         }
         
-        /* Making text inside the cards a bit better looking */
+        /* Making text inside the cards better looking */
 
         .product-card p {
             margin: 0;
@@ -80,10 +80,6 @@ if (session_status() == PHP_SESSION_NONE) {
 </head>
 
 <body>
-
-    <!-- Example of copy pasting and modifying a navbar from the bootstrap examples -->
-    <!-- Copy pasted from https://getbootstrap.com/docs/5.0/examples/navbars/ -->
-
     <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
         <div class="container">
             <a class="navbar-brand" href="#" style="color: lightblue;">RoyalSupps</a>
@@ -120,8 +116,6 @@ if (session_status() == PHP_SESSION_NONE) {
         </div>
     </nav>
 
-    <!-- Example of how to use the bootstrap classes to create a nice header -->
-
     <section class="py-3 text-center container-fluid bg-light">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
@@ -130,8 +124,6 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
         </div>
     </section>
-
-    <!-- Example of responsive product cards -->
 
     <section>
         <div class="container">
@@ -160,10 +152,6 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
     </section>
 
-    <!-- A footer -->
-
-    <!-- some social icons to show off font awesome -->
-
     <footer>
         <div class="bg-light text-center">
             <div class="container pt-3 pb-2 mt-5">
@@ -182,8 +170,6 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
         </div>
     </footer>
-
-    <!-- Javascript needed to make the dropdown and hamburger menu work -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

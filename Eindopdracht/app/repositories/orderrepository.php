@@ -34,7 +34,6 @@ class OrderRepository {
     
         $orderObjects = [];
         foreach ($orders as $order) {
-            // Replace 'userId' and 'createdAt' with the correct column names from your database
             $orderObject = new Order($order['id'], $order['user_id'], $order['created_at']);
             $orderObject->items = $this->getOrderItems($orderObject->id);
             $orderObjects[] = $orderObject;
