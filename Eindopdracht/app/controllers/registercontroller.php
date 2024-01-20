@@ -20,6 +20,11 @@ class RegisterController {
         $username = $_POST['username'];
         $password = $_POST['password'];
     
+        if (strlen($password) < 8) {
+            header('Location: /register');
+            exit();
+        }
+    
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     
         $this->userService->createUser($username, $hashed_password);

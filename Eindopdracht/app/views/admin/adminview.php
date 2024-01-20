@@ -101,12 +101,6 @@ if (session_status() == PHP_SESSION_NONE) {
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown04">
@@ -171,25 +165,6 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- A footer -->
 
     <!-- some social icons to show off font awesome -->
-
-    <footer>
-        <div class="bg-light text-center">
-            <div class="container pt-3 pb-2 mt-5">
-                <p class="mb-0">Follow us on:</p>
-                <i class="fa-brands fa-2x fa-twitter"></i>
-                <i class="fa-brands fa-2x fa-facebook"></i>
-                <i class="fa-brands fa-2x fa-instagram"></i>
-                <i class="fa-brands fa-2x fa-linkedin"></i>
-            </div>
-        </div>
-
-        <div class="bg-dark text-light">
-            <div class="container pt-3 pb-2">
-                <p class="float-end"><a class="text-light" href="#">Back to top</a></p>
-                <p>© 2023-2024 RoyalSupps · <a href="#" class="text-light">Privacy</a> · <a class="text-light" href="#">Terms</a></p>
-            </div>
-        </div>
-    </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

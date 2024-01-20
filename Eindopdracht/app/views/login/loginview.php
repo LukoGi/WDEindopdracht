@@ -29,12 +29,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown04">
@@ -60,23 +54,22 @@
     </nav>
 
     <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <h2 class="text-center">Login</h2>
-            <form method="post">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-primary mt-3">Submit</button>
-            </form>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <h2 class="text-center">Log in</h2>
+                <p class="text-center">If you don't have an account yet, you should <a href="/register">register</a></p>
+                <form method="post">
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username/email">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3 w-100">Log in</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

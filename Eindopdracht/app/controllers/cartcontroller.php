@@ -62,8 +62,11 @@ class CartController {
             session_start();
         }
     
-        // Create a new order for the current user
-        $orderId = $this->orderService->createOrder($_SESSION['user_id']);
+        // Check if a user is logged in
+        $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+    
+        // Create a new order for the current user (or a guest if no user is logged in)
+        $orderId = $this->orderService->createOrder($userId);
     
         // Add each product in the cart to the order
         foreach ($_SESSION['cart'] as $product) {
